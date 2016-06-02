@@ -1,0 +1,3 @@
+isFullscreen = false
+screenWidth = 1360
+screenHeight = 768
