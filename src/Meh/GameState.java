@@ -10,6 +10,8 @@ import static Meh.MainGame.PAUSESTATE;
 import static Meh.MainGame.changeState;
 import java.awt.Font;
 import java.util.ArrayList;
+
+import Game.Level;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -26,6 +28,7 @@ public class GameState extends BasicGameState{
     
     public ArrayList<Button> buttonList;
     public Player player;
+    Level level;
 
     @Override
     public int getID() {
@@ -45,11 +48,13 @@ public class GameState extends BasicGameState{
         
         int playerSize = 32;
         player = new Player(gc.getWidth()/2 - playerSize/2, gc.getHeight()/2 - playerSize/2, playerSize);
+        level = new Level();
     }
 
     @Override
-    public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException {
-        player.render(gc, sbg, grphcs);
+    public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
+        player.render(gc, sbg, g);
+        level.render(g);
         
         Font f = new Font("Arial", Font.PLAIN, 40);
         TrueTypeFont ttf = new TrueTypeFont(f, true);
