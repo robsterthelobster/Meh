@@ -48,3 +48,11 @@ Temporary Items
 *.class
 .idea/*
 Meh.iml
+build/*
+nbproject/*
+LWJGL/*
+Slick2D/*
+slick.zip
+lwjgl.zip
+build.xml
+manifest.mf
