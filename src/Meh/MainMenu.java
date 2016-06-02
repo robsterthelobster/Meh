@@ -33,10 +33,15 @@ public class MainMenu extends BasicGameState{
 
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
+        int rX = 8;
+        int rY = 4;
+        int offsetY = 100;
+        int size = 32;
+        
         buttonList = new ArrayList<>();
-        buttonList.add(new Button(gc.getWidth()/8, gc.getHeight()/4, "Start Game", 32, Color.white, buttonList.size()));
-        buttonList.add(new Button(gc.getWidth()/8, gc.getHeight()/4, "Options", 32, Color.white, buttonList.size()));
-        buttonList.add(new Button(gc.getWidth()/8, gc.getHeight()/4, "Exit", 32, Color.white, buttonList.size()));
+        buttonList.add(new Button(rX, rY, 0, 0, "Start Game", size, Color.white, buttonList.size(), gc));
+        buttonList.add(new Button(rX, rY, 0, offsetY * buttonList.size(), "Options", size, Color.white, buttonList.size(), gc));
+        buttonList.add(new Button(rX, rY, 0, offsetY * buttonList.size(), "Exit", size, Color.white, buttonList.size(), gc));
     }
 
     @Override

@@ -23,6 +23,10 @@ import org.newdawn.slick.state.StateBasedGame;
 public class Button {
     public String text;
     public String font;
+    public int rX;
+    public int rY;
+    public int offsetX;
+    public int offsetY;
     public int x;
     public int y;
     public int defaultSize;
@@ -37,9 +41,13 @@ public class Button {
     public Font f;
     public TrueTypeFont ttf;
     
-    Button(int x, int y, String text, int size, Color c, int index){
-        this.x = x;
-        this.y = y + index*100;
+    Button(int rX, int rY, int offsetX, int offsetY, String text, int size, Color c, int index, GameContainer gc){
+        this.rX = rX;
+        this.rY = rY;
+        this.offsetX = offsetX;
+        this.offsetY = offsetY;
+        this.x = gc.getWidth()/rX + this.offsetX;
+        this.y = gc.getHeight()/rY + this.offsetY;
         this.text = text;
         this.defaultSize = size;
         this.fontSize = size;
@@ -61,12 +69,12 @@ public class Button {
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {
         Input input = gc.getInput();
         
-        if(this.x != gc.getWidth()/8){
-            this.x = gc.getWidth()/8;
+        if(this.x != gc.getWidth()/rX + this.offsetX){
+            this.x = gc.getWidth()/rX + this.offsetX;
         }
         
-        if(this.y != gc.getHeight()/4 + this.index*100){
-            this.y = gc.getHeight()/4 + this.index*100;
+        if(this.y != gc.getHeight()/rY + this.offsetY){
+            this.y = gc.getHeight()/rY + this.offsetY;
         }
         
         if(input.getMouseX() >= this.x && input.getMouseX() <= this.x + this.ttf.getWidth(this.text) &&

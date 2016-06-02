@@ -46,9 +46,22 @@ public class OptionsMenu extends BasicGameState{
         String screenState = "Fullscreen";
         if(!app.isFullscreen())
             screenState = "Windowed";
-        buttonList.add(new Button(gc.getWidth()/8, gc.getHeight()/4, screenState, 32, Color.white, buttonList.size()));
-        buttonList.add(new Button(gc.getWidth()/8, gc.getHeight()/4, gc.getWidth() + "x" + gc.getHeight(), 32, Color.white, buttonList.size()));
-        buttonList.add(new Button(gc.getWidth()/8, gc.getHeight()/4, "Back", 32, Color.white, buttonList.size()));
+        
+        //Relative distance from window edges
+        int rX = 8;
+        int rY = 9;
+        int offsetY = 60;
+        int size = 30;
+        
+        buttonList.add(new Button(rX, rY, 0, 0, screenState, size, Color.white, buttonList.size(), gc));
+        buttonList.add(new Button(rX, rY, 0, offsetY * buttonList.size(), gc.getWidth() + "x" + gc.getHeight(), size, Color.white, buttonList.size(), gc));
+        buttonList.add(new Button(rX, rY, 0, offsetY * buttonList.size(), "Up Key", size, Color.white, buttonList.size(), gc));
+        buttonList.add(new Button(rX, rY, 0, offsetY * buttonList.size(), "Down Key", size, Color.white, buttonList.size(), gc));
+        buttonList.add(new Button(rX, rY, 0, offsetY * buttonList.size(), "Left Key", size, Color.white, buttonList.size(), gc));
+        buttonList.add(new Button(rX, rY, 0, offsetY * buttonList.size(), "Right Key", size, Color.white, buttonList.size(), gc));
+        buttonList.add(new Button(rX, rY, 0, offsetY * buttonList.size(), "Reload Key", size, Color.white, buttonList.size(), gc));
+        buttonList.add(new Button(rX, rY, 0, offsetY * buttonList.size(), "Shoot Button", size, Color.white, buttonList.size(), gc));
+        buttonList.add(new Button(rX, rY, 0, (offsetY+10) * buttonList.size(), "Back", size, Color.white, buttonList.size(), gc));
     }
 
     @Override
@@ -106,7 +119,7 @@ public class OptionsMenu extends BasicGameState{
                             }
                         }
                         break;
-                    case 2:
+                    case 8:
                         changeState(sbg, previousState, this.getID());
                         break;
                     default:

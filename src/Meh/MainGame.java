@@ -14,6 +14,7 @@ import java.util.*;
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 /**
@@ -25,6 +26,14 @@ class MainGame extends StateBasedGame{
     public static AppGameContainer app;
     public static int windowWidth;
     public static int windowHeight;
+    
+    //Player Controls
+    public static int upKey;
+    public static int downKey;
+    public static int leftKey;
+    public static int rightKey;
+    public static int reloadKey;
+    public static int shootButton;
     
     public static String optionsFilename = "options.txt";
     public static String optionsDirectory = "options/";
@@ -62,7 +71,7 @@ class MainGame extends StateBasedGame{
                 ArrayList<Integer> tmp = new ArrayList<>();
                 tmp.add(mode.getWidth());
                 tmp.add(mode.getHeight());
-                if(!resList.contains(tmp) && (tmp.get(0) >= 800 && tmp.get(1) >= 600))
+                if(!resList.contains(tmp) && (tmp.get(0) >= 1024 && tmp.get(1) >= 768))
                     resList.add(tmp);
             }
             previousState = 0;
@@ -104,6 +113,24 @@ class MainGame extends StateBasedGame{
                 case "screenHeight":
                     windowHeight = Integer.parseInt(lines[2]);
                     break;
+                case "Up_Key":
+                    upKey = Integer.parseInt(lines[2]);
+                    break;
+                case "Down_Key":
+                    downKey = Integer.parseInt(lines[2]);
+                    break;
+                case "Left_Key":
+                    leftKey = Integer.parseInt(lines[2]);
+                    break;
+                case "Right_Key":
+                    rightKey = Integer.parseInt(lines[2]);
+                    break;
+                case "Reload_Key":
+                    reloadKey = Integer.parseInt(lines[2]);
+                    break;
+                case "Shoot_Button":
+                    shootButton = Integer.parseInt(lines[2]);
+                    break;
             }
         }
         fr.close();
@@ -116,11 +143,24 @@ class MainGame extends StateBasedGame{
         GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
         windowWidth = gd.getDisplayMode().getWidth();
         windowHeight = gd.getDisplayMode().getHeight();
-                
+        
+        upKey = Input.KEY_W;
+        downKey = Input.KEY_S;
+        leftKey = Input.KEY_A;
+        rightKey = Input.KEY_D;
+        reloadKey = Input.KEY_R;
+        shootButton = Input.MOUSE_LEFT_BUTTON;
+        
         ArrayList<String> lines = new ArrayList<String>();
         lines.add("isFullscreen = " + isFullscreen);
         lines.add("screenWidth = " + windowWidth);
         lines.add("screenHeight = " + windowHeight);
+        lines.add("Up_Key = " + upKey);
+        lines.add("Down_Key = " + downKey);
+        lines.add("Left_Key = " + leftKey);
+        lines.add("Right_Key = " + rightKey);
+        lines.add("Reload_Key = " + reloadKey);
+        lines.add("Shoot_Button = " + shootButton);
         Path file = Paths.get(optionsDirectory + optionsFilename);
         Files.write(file,lines,Charset.forName("UTF-8"));
     }

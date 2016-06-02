@@ -36,10 +36,15 @@ public class PauseState extends BasicGameState{
 
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
+        int rX = 8;
+        int rY = 4;
+        int offsetY = 100;
+        int size = 32;
+        
         buttonList = new ArrayList<>();
-        buttonList.add(new Button(gc.getWidth()/8, gc.getHeight()/4, "Resume", 32, Color.white, buttonList.size()));
-        buttonList.add(new Button(gc.getWidth()/8, gc.getHeight()/4, "Options", 32, Color.white, buttonList.size()));
-        buttonList.add(new Button(gc.getWidth()/8, gc.getHeight()/4, "Back to Main Menu", 32, Color.white, buttonList.size()));
+        buttonList.add(new Button(rX, rY, 0, 0, "Resume", size, Color.white, buttonList.size(), gc));
+        buttonList.add(new Button(rX, rY, 0, offsetY * buttonList.size(), "Options", size, Color.white, buttonList.size(), gc));
+        buttonList.add(new Button(rX, rY, 0, offsetY * buttonList.size(), "Back to Main Menu", size, Color.white, buttonList.size(), gc));
     }
 
     @Override
@@ -47,7 +52,7 @@ public class PauseState extends BasicGameState{
         Font f = new Font("Arial", Font.PLAIN, 40);
         TrueTypeFont ttf = new TrueTypeFont(f, true);
             
-        ttf.drawString(gc.getWidth()/3, gc.getHeight()/5, "Paused");
+        ttf.drawString(gc.getWidth()/2 - ttf.getWidth("Paused")/2, gc.getHeight()/8, "Paused");
             
         for(Button b : buttonList){
             b.render(gc, sbg, grphcs);
