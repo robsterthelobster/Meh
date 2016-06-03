@@ -1,3 +1,9 @@
-isFullscreen = true
-screenWidth = 1920
-screenHeight = 1080
+isFullscreen = false
+screenWidth = 1024
+screenHeight = 768
+Up_Key = 17
+Down_Key = 31
+Left_Key = 30
+Right_Key = 32
+Reload_Key = 19
+Shoot_Button = 0
