@@ -18,6 +18,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.TrueTypeFont;
+import org.newdawn.slick.geom.Point;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 /**
@@ -47,15 +48,16 @@ public class GameState extends BasicGameState{
         buttonList.add(new Button(rX, rY, 0, offsetY * buttonList.size(), "Back", size, Color.white, buttonList.size(), gc));
         
         int playerSize = 32;
-        player = new Player(gc.getWidth()/2 - playerSize/2, gc.getHeight()/2 - playerSize/2, playerSize);
         level = new Level();
+        player = new Player(level.getPlayerStartX(), level.getPlayerStartY(), playerSize);
+
     }
 
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-        player.render(gc, sbg, g);
         level.render(g);
-        
+        player.render(gc, sbg, g);
+
         Font f = new Font("Arial", Font.PLAIN, 40);
         TrueTypeFont ttf = new TrueTypeFont(f, true);
             

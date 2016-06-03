@@ -2,20 +2,20 @@
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="10" height="5" tilewidth="128" tileheight="128" nextobjectid="1">
  <tileset firstgid="1" name="grassflower" tilewidth="128" tileheight="128" tilecount="32" columns="8">
   <image source="../tileset/grassflower.png" width="1024" height="512"/>
+  <tile id="3">
+   <properties>
+    <property name="tileType" value="player"/>
+   </properties>
+  </tile>
  </tileset>
  <layer name="Grass" width="10" height="5">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC2NkYGBgBGJOKBYEYmYgFgNidiDmAGIBqJrBrA4A/HKUDsgAAAA=
   </data>
  </layer>
- <layer name="Enemies" width="10" height="5">
+ <layer name="CollisionLayer" width="10" height="5">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGB4AAHaoccnIAAAA
-  </data>
- </layer>
- <layer name="Turrets" width="10" height="5">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGB4AAHaoccnIAAAA
+   H4sIAAAAAAAAC2NgwARiWMSwAXzqWKhsHiF1AMJF+4DIAAAA
   </data>
  </layer>
 </map>
