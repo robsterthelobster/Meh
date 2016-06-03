@@ -27,7 +27,6 @@ import org.newdawn.slick.state.StateBasedGame;
  */
 public class GameState extends BasicGameState{
     
-    public ArrayList<Button> buttonList;
     public Player player;
     Level level;
 
@@ -42,10 +41,6 @@ public class GameState extends BasicGameState{
         int rY = 4;
         int offsetY = 100;
         int size = 32;
-        
-        buttonList = new ArrayList<>();
-        buttonList.add(new Button(rX, rY, 0, 0, "Options", size, Color.white, buttonList.size(), gc));
-        buttonList.add(new Button(rX, rY, 0, offsetY * buttonList.size(), "Back", size, Color.white, buttonList.size(), gc));
         
         int playerSize = 32;
         level = new Level();
