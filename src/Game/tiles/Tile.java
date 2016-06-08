@@ -1,4 +1,4 @@
-package Game.tiles;
+package game.tiles;
 
 /**
  * Created by robin on 6/2/2016.

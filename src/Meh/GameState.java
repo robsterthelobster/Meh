@@ -9,16 +9,16 @@ import static Meh.MainGame.GAMESTATE;
 import static Meh.MainGame.PAUSESTATE;
 import static Meh.MainGame.changeState;
 import java.awt.Font;
-import java.util.ArrayList;
 
-import Game.Level;
-import org.newdawn.slick.Color;
+import game.InputController;
+import game.Level;
+import game.Player;
+import game.PlayerController;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.TrueTypeFont;
-import org.newdawn.slick.geom.Point;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 /**
@@ -29,6 +29,7 @@ public class GameState extends BasicGameState{
     
     public Player player;
     Level level;
+    PlayerController playerController;
 
     @Override
     public int getID() {
@@ -42,10 +43,10 @@ public class GameState extends BasicGameState{
         int offsetY = 100;
         int size = 32;
         
-        int playerSize = 32;
         level = new Level();
-        player = new Player(level.getPlayerStartX(), level.getPlayerStartY(), playerSize);
 
+        player = new Player(level.getPlayerStartX(), level.getPlayerStartY(), level.getTileSize());
+        playerController = new InputController(player);
     }
 
     @Override
@@ -60,14 +61,14 @@ public class GameState extends BasicGameState{
     }
 
     @Override
-    public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {
+    public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
         Input input = gc.getInput();
+
+        playerController.handleInput(input, delta);
         
         if(input.isKeyPressed(Input.KEY_ESCAPE)){
             changeState(sbg, PAUSESTATE, this.getID());
         }
-        
-        player.update(gc, sbg, i);
     }
     
 }

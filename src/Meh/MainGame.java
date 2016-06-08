@@ -22,7 +22,7 @@ import org.newdawn.slick.state.StateBasedGame;
  * @author Jason
  */
 class MainGame extends StateBasedGame{
-    public static String gameTitle = "My Game";
+    public static String gameTitle = "My game";
     public static AppGameContainer app;
     public static int windowWidth;
     public static int windowHeight;

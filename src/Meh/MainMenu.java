@@ -39,7 +39,7 @@ public class MainMenu extends BasicGameState{
         int size = 32;
         
         buttonList = new ArrayList<>();
-        buttonList.add(new Button(rX, rY, 0, 0, "Start Game", size, Color.white, buttonList.size(), gc));
+        buttonList.add(new Button(rX, rY, 0, 0, "Start game", size, Color.white, buttonList.size(), gc));
         buttonList.add(new Button(rX, rY, 0, offsetY * buttonList.size(), "Options", size, Color.white, buttonList.size(), gc));
         buttonList.add(new Button(rX, rY, 0, offsetY * buttonList.size(), "Exit", size, Color.white, buttonList.size(), gc));
     }

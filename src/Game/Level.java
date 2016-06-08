@@ -1,10 +1,9 @@
-package Game;
+package game;
 
-import Game.tiles.Tile;
+import game.tiles.Tile;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.geom.Point;
 import org.newdawn.slick.tiled.TiledMap;
 
 /**
@@ -93,6 +92,10 @@ public class Level {
 
     public int getPlayerStartY(){
         return playerStartY;
+    }
+
+    public int getTileSize(){
+        return tileSize;
     }
 
 }
