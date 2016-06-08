@@ -14,6 +14,7 @@ import game.InputController;
 import game.Level;
 import game.Player;
 import game.PlayerController;
+import game.physics.Physics;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -29,6 +30,7 @@ public class GameState extends BasicGameState{
     
     public Player player;
     Level level;
+    Physics physics;
     PlayerController playerController;
 
     @Override
@@ -44,15 +46,16 @@ public class GameState extends BasicGameState{
         int size = 32;
         
         level = new Level();
+        physics = new Physics();
 
         player = new Player(level.getPlayerStartX(), level.getPlayerStartY(), level.getTileSize());
+        level.addPlayerToLevel(player);
         playerController = new InputController(player);
     }
 
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
         level.render(g);
-        player.render(gc, sbg, g);
 
         Font f = new Font("Arial", Font.PLAIN, 40);
         TrueTypeFont ttf = new TrueTypeFont(f, true);
@@ -65,6 +68,7 @@ public class GameState extends BasicGameState{
         Input input = gc.getInput();
 
         playerController.handleInput(input, delta);
+        physics.handlePhysics(level, delta);
         
         if(input.isKeyPressed(Input.KEY_ESCAPE)){
             changeState(sbg, PAUSESTATE, this.getID());

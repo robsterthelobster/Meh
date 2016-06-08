@@ -38,10 +38,10 @@ public class Player extends LevelObject{
         this.y = y;
         
         this.tileSize = tileSize;
-        this.rect = new Rectangle(this.x, this.y, this.size, this.size); 
+        this.rect = new Rectangle(this.x + getOffset(), this.y  + getOffset(), this.size, this.size);
     }
     
-    public void render(GameContainer gc, StateBasedGame sbg, Graphics g){
+    public void render(Graphics g){
         g.setColor(Color.blue);
         g.fill(this.rect);
     }
@@ -67,9 +67,15 @@ public class Player extends LevelObject{
             default:
                 System.out.println("No such state");
         }
-        rect.setX(x);
-        rect.setY(y);
+        rect.setX(x + getOffset());
+        rect.setY(y + getOffset());
     }
 
+    /*
+        Offset to correct center, assuming square
+     */
+    private int getOffset(){
+        return (tileSize - size)/2;
+    }
 
 }

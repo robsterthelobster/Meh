@@ -6,6 +6,10 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
 
+import java.util.ArrayList;
+
+import static sun.audio.AudioPlayer.player;
+
 /**
  * Created by robin on 6/1/2016.
  */
@@ -19,6 +23,7 @@ public class Level {
     int tileOffset = 0;
     private Tile[][] tiles;
     int playerStartX, playerStartY;
+    private ArrayList<LevelObject> entities;
 
     public Level() throws SlickException{
         map = new TiledMap("data/levels/test.tmx");
@@ -26,6 +31,10 @@ public class Level {
         mCol = map.getWidth();
         mRow = map.getHeight();
         tileSize = map.getTileHeight();
+
+        entities = new ArrayList<LevelObject>();
+        Enemy enemy = new Enemy(600, 600);
+        entities.add(enemy);
 
         loadTileMap();
     }
@@ -48,6 +57,14 @@ public class Level {
             g.drawLine(i*tileSize, tileOffset*tileSize, i*tileSize, (mRow+tileOffset)*tileSize);
         }
 
+        for(LevelObject entity : entities){
+            if(entity instanceof Player){
+                ((Player) entity).render(g);
+            }
+            if(entity instanceof Enemy){
+                ((Enemy) entity).render(g);
+            }
+        }
     }
 
     private void loadTileMap(){
@@ -96,6 +113,18 @@ public class Level {
 
     public int getTileSize(){
         return tileSize;
+    }
+
+    public ArrayList<LevelObject> getEntities(){
+        return entities;
+    }
+
+    public boolean addPlayerToLevel(Player player){
+        if(player != null){
+            entities.add(player);
+            return true;
+        }
+        return false;
     }
 
 }
